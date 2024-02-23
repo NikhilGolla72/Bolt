@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Registration - VolunSteer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .registration-container {
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            margin:30px;
+        }
+        h1, h3 {
+            text-align: center;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        input[type="text"], input[type="email"], input[type="password"], input[type="text"],input[type="number"], select {
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        select {
+            cursor: pointer;
+            color:grey;
+        }
+        .ngo-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .ngo-button, .btn-submit {
+            background-color: #f0f0f0;
+            color: none;
+            border: 2px solid #ddd;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        .btn-submit{
+            background-color: #1e95c8;
+            color:white;
+            font-weight:600;
+
+        }
+        .btn-submit:hover{
+            background-color: #8ab3c5;
+        }
+        .ngo-button.selected {
+            background-color: #1e95c8;
+            color: white; /* Change text color to black */
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="registration-container">
+        <h1>Organization's Registration</h1>
+        <form id="registrationForm">
+            <input type="text" name="Name" placeholder="Name of the NGO" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+
+            <h3>Select the type of Organization</h3>
+            <div class="ngo-buttons">
+                <button type="button" class="ngo-button" data-ngotype="Environmental Conservation">Environmental Conservation</button>
+                <button type="button" class="ngo-button" data-ngotype="Animal Welfare">Animal Welfare</button>
+                <button type="button" class="ngo-button" data-ngotype="Children's Education">Children's Education</button>
+                <button type="button" class="ngo-button" data-ngotype="Health Initiatives">Health Initiatives</button>
+                <button type="button" class="ngo-button" data-ngotype="Human Rights">Human Rights</button>
+                <button type="button" class="ngo-button" data-ngotype="Disaster Relief">Disaster Relief</button>
+                <button type="button" class="ngo-button" data-ngotype="Arts and Culture">Arts and Culture</button>
+                <button type="button" class="ngo-button" data-ngotype="Child Welfare">Child Welfare</button>
+                <button type="button" class="ngo-button" data-ngotype="Women's Empowerment">Women's Empowerment</button>
+                <button type="button" class="ngo-button" data-ngotype="Food Security">Food Security</button>
+                <button type="button" class="ngo-button" data-ngotype="Senior Citizen Support">Senior Citizen Support</button>
+                <button type="button" class="ngo-button" data-ngotype="Sports and Recreation">Sports and Recreation</button>
+                <button type="button" class="ngo-button" data-ngotype="Housing">Housing</button>
+                <button type="button" class="ngo-button" data-ngotype="Mental Health">Mental Health</button>
+                <button type="button" class="ngo-button" data-ngotype="Refugee Assistance">Refugee Assistance</button>
+                <button type="button" class="ngo-button" data-ngotype="Youth Development">Youth Development</button>
+            </div>
+            <input type="hidden" name="languages" id="selectedLanguages">
+            <button type="submit" class="btn-submit">Register</button>
+        </form>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('registrationForm');
+            const selectedLanguagesInput = document.getElementById('selectedLanguages');
+            const ngoButtons = document.querySelectorAll('.ngo-button');
+            let selectedLanguages = [];
+
+            ngoButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const ngotype = this.getAttribute('data-ngotype');
+                    if (selectedLanguages.includes(ngotype)) {
+                        selectedLanguages = selectedLanguages.filter(l => l !== ngotype);
+                        this.classList.remove('selected');
+                    } else if (selectedLanguages.length < 2) { // Limit selection to 2 languages
+                        selectedLanguages.push(ngotype);
+                        this.classList.add('selected');
+                    }
+
+                    selectedLanguagesInput.value = selectedLanguages.join(', ');
+                });
+            });
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                console.log('Form Submitted with languages:', selectedLanguagesInput.value);
+            });
+        });
+    </script>
+</body>
+</html>

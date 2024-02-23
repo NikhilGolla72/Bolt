@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organization Volunteer Work Opening</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            width: (100%-20px);
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-right: 10px;
+        }
+        input, .btn {
+            width: 96%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .btn {
+            background-color: #23a6d5;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #1e81b0;
+        }
+        .skills-container, .languages-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .skill-btn, .language-btn {
+            flex-grow: 1;
+            text-align: center;
+            cursor: pointer;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            padding: 8px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .skill-btn.selected, .language-btn.selected {
+            background-color: #23a6d5;
+            color: white;
+            border-color: #23a6d5;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+      <h2 style="text-align: center;">Create Volunteer Work Opening</h2>
+        <form>
+            <input type="text" id="title" name="title" placeholder="Work Title" required>
+            <input type="text" id="address1" name="address1" placeholder="Address Line 1" required>
+            <input type="text" id="address2" name="address2" placeholder="Address Line 2">
+            <input type="text" id="city" name="city" placeholder="City" required>
+            <input type="text" id="state" name="state" placeholder="State" required>
+            <input type="text" id="pin" name="pin" placeholder="PIN Code" required>
+            <input type="text" id="ageRange" name="ageRange" placeholder="Age Range (e.g., 18-30)" required>
+            <input type="text" id="numPositions" name="numPositions" placeholder="Number of Available Positions" required>
+            
+            <h3 class="title">Skills Required</h3>
+            <div class="skills-container" id="skills-container">
+            </div>
+            <h3 class="title">Languages Required</h3>
+            <div class="languages-container" id="languages-container">
+            </div>
+            <button type="submit" class="btn">Submit Opening</button>
+        </form>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const skills = ["Nursing", "Teaching", "Veterinary", "First-Aid", "Nutrition", "Lobbying", "Accounting", "Writing", "Fieldwork", "Babysitting", "Computing", "Graphic Design", "Plumbing", "Advocacy", "Counseling", "Photography", "Cooking", "Hardware Repair", "Driving", "Fundraising", "Marketing", "Translation", "Editing", "Logistics", "Web Programming", "Back-end Programming", "Software Development"];
+            const languages = ["Hindi", "English", "Telugu", "Tamil", "Marathi", "Bengali", "French"];
+            const skillsContainer = document.getElementById('skills-container');
+            const languagesContainer = document.getElementById('languages-container');
+
+            skills.forEach(skill => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.innerText = skill;
+                btn.classList.add('skill-btn');
+                btn.onclick = function() { toggleSelection(btn, 3); };
+                skillsContainer.appendChild(btn);
+            });
+
+            languages.forEach(language => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.innerText = language;
+                btn.classList.add('language-btn');
+                btn.onclick = function() { toggleSelection(btn, 2); };
+                languagesContainer.appendChild(btn);
+            });
+
+            function toggleSelection(btn, limit) {
+                const selected = btn.parentNode.querySelectorAll('.selected').length;
+                const isSelected = btn.classList.contains('selected');
+                if (isSelected) {
+                    btn.classList.remove('selected');
+                } else if (selected < limit) {
+                    btn.classList.add('selected');
+                } else {
+                    alert(`Please select up to ${limit} options only.`);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VolunSteer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite; /* Faster gradient change */
+            font-family: 'Poppins', sans-serif;
+        }
+        .container {
+            text-align: center;
+            color: white;
+        }
+        .logo {
+            margin-bottom: 50px; /* Increased spacing */
+        }
+        .logo img {
+            width: 180px; /* Larger logo */
+        }
+        .title {
+            font-size: 3rem; /* Increased title size for better visibility */
+            font-weight: 600;
+            margin-bottom: 30px; /* Increased spacing */
+        }
+        .btn {
+            display: inline-block;
+            padding: 20px 60px; /* Larger buttons */
+            margin: 20px; /* Increased spacing */
+            font-size: 1.2rem; /* Larger font size */
+            font-weight: 500; /* Slightly bolder */
+            color: white;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            border-radius: 30px; /* Slightly more rounded */
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.2); /* More pronounced shadow */
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="https://i.ibb.co/4ZFBRrp/logo.png" alt="VolunSteer Logo" />
+        </div>
+        <div class="title">VolunSteer</div>
+        <button class="btn" onclick="location.href='/vol/login'">I'm a Volunteer</button>
+        <button class="btn" onclick="location.href='/org/login'">I'm an NGO</button>
+    </div>
+</body>
+</html>
